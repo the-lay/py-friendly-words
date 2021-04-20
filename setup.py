@@ -20,7 +20,7 @@ setup(name='friendlywords',
       platforms=['any'],
       packages=find_packages(),
       classifiers=[
-          'Development Status :: 3 - Alpha',
+          'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
           'Topic :: Software Development :: Libraries :: Python Modules',
           'License :: OSI Approved :: MIT License',

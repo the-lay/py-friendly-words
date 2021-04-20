@@ -1,5 +1,6 @@
 # py-friendly-words
 [![PyPI version](https://badge.fury.io/py/friendlywords.svg)](https://badge.fury.io/py/friendlywords)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/friendlywords)
 
 Python package to generate random human-readable strings, e.g. project and experiment names.
 The word lists are taken from
