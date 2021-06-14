@@ -1,5 +1,4 @@
 aback
-abaft
 abalone
 abiding
 ablaze
@@ -11,6 +10,7 @@ abrupt
 absorbed
 absorbing
 abstracted
+abundance
 abundant
 abyssinian
 accessible
@@ -45,10 +45,10 @@ alkaline
 alluring
 almond
 almondine
+aloud
 alpine
 aluminum
 amazing
-amber
 ambiguous
 ambitious
 amenable
@@ -97,9 +97,9 @@ bedecked
 befitting
 bejewled
 believed
+bemused
 beneficial
 berry
-beryl
 best
 better
 bevel
@@ -108,20 +108,20 @@ billowy
 bird
 bitter
 bittersweet
+blend
 bloom
 blossom
 blue
 blush
 blushing
 boatneck
-boggy
 boiled
 boiling
 bold
 bolder
-bony
 boom
 booming
+bottled
 bottlenose
 boulder
 bouncy
@@ -153,8 +153,6 @@ bubble
 bubbly
 bumpy
 burly
-burnt
-bush
 bustling
 busy
 butter
@@ -164,10 +162,12 @@ butternut
 buttery
 button
 buttoned
+bygone
 cactus
 cake
 calico
 calm
+camp
 canary
 candied
 candle
@@ -176,12 +176,14 @@ canyon
 capable
 capricious
 caramel
+carefree
 carbonated
 careful
 caring
 carnation
 carnelian
 carpal
+casual
 cat
 caterwauling
 catkin
@@ -222,6 +224,7 @@ chrome
 circular
 citrine
 clammy
+clarity
 classic
 classy
 clean
@@ -262,14 +265,15 @@ cool
 cooperative
 coordinated
 copper
+copy
 coral
 cord
+corner
 cosmic
 cotton
 cottony
 courageous
 crawling
-cream
 creative
 crimson
 crocus
@@ -278,15 +282,13 @@ crystalline
 cubic
 cuboid
 cuddly
+cultivate
 cultured
 cumbersome
 curious
-curly
 curse
 curved
-curvy
 cut
-cute
 cyan
 cyber
 cyclic
@@ -294,7 +296,6 @@ cypress
 daffodil
 daffy
 daily
-daisy
 dandelion
 dandy
 dapper
@@ -302,6 +303,7 @@ dark
 darkened
 dashing
 dawn
+dazed
 dazzling
 deadpan
 dear
@@ -309,6 +311,7 @@ debonair
 deciduous
 decisive
 decorous
+dedicated
 deep
 deeply
 defiant
@@ -354,7 +357,6 @@ earthy
 east
 eastern
 easy
-ebony
 economic
 educated
 efficacious
@@ -367,7 +369,6 @@ elderly
 electric
 elegant
 elemental
-elfin
 elite
 ember
 emerald
@@ -388,6 +389,7 @@ equal
 equatorial
 equinox
 erratic
+estimated
 ethereal
 evanescent
 even
@@ -437,7 +439,6 @@ fir
 fire
 first
 fish
-fishy
 five
 fixed
 flame
@@ -452,6 +453,7 @@ flicker
 flint
 florentine
 flossy
+flourish
 flower
 flowery
 fluff
@@ -490,15 +492,10 @@ frosted
 fuchsia
 full
 functional
-funky
 funny
-furry
 furtive
-fuschia
 future
 futuristic
-fuzzy
-gabby
 gainful
 galvanized
 gamy
@@ -522,7 +519,6 @@ glamorous
 glass
 glaze
 gleaming
-glen
 glib
 glimmer
 glistening
@@ -573,11 +569,11 @@ handsome
 handsomely
 handy
 happy
+hardly
 harmless
 harmonious
 harsh
 harvest
-hazel
 heady
 healthy
 heartbreaking
@@ -592,6 +588,7 @@ helpful
 hexagonal
 hickory
 highfalutin
+highly
 hilarious
 hill
 hip
@@ -599,7 +596,6 @@ hissing
 historical
 holistic
 hollow
-holly
 holy
 honey
 honeysuckle
@@ -617,7 +613,6 @@ humorous
 hungry
 hurricane
 hushed
-husky
 hyper
 hypnotic
 iced
@@ -637,6 +632,7 @@ incongruous
 incredible
 indecisive
 indigo
+indispensable
 industrious
 inexpensive
 infrequent
@@ -663,9 +659,7 @@ iris
 iron
 irradiated
 island
-ivory
 ivy
-jade
 jagged
 jasper
 jazzy
@@ -677,7 +671,6 @@ jeweled
 jolly
 joyous
 judicious
-juicy
 jumbled
 jumpy
 jungle
@@ -700,7 +693,6 @@ lacy
 lake
 languid
 lapis
-large
 laser
 lateral
 lava
@@ -722,10 +714,10 @@ lightning
 like
 likeable
 lilac
-lily
 lime
 linen
 literate
+lithe
 little
 lively
 living
@@ -747,7 +739,6 @@ lucky
 ludicrous
 lumbar
 luminous
-lumpy
 lunar
 lush
 luxuriant
@@ -786,17 +777,16 @@ materialistic
 mature
 maze
 meadow
+medieval
 mellow
 melodic
 melodious
-melon
 melted
 meowing
 merciful
 mercurial
 mercury
 mesquite
-messy
 metal
 meteor
 mewing
@@ -804,6 +794,8 @@ mica
 midi
 midnight
 mighty
+mild
+mildly
 military
 mini
 miniature
@@ -815,6 +807,7 @@ misty
 mixed
 mixolydian
 modern
+modest
 momentous
 moored
 morning
@@ -823,11 +816,12 @@ mountain
 mountainous
 mousy
 mud
+muddled
 muddy
 mulberry
+mutual
 mysterious
 narrow
-nasal
 natural
 navy
 near
@@ -848,7 +842,6 @@ nine
 ninth
 noble
 noiseless
-noisy
 nonchalant
 nonstop
 noon
@@ -880,6 +873,7 @@ open
 opposite
 orange
 orchid
+orderly
 ordinary
 organic
 organized
@@ -948,7 +942,7 @@ pleasant
 plucky
 plum
 plume
-plump
+plural
 pointed
 pointy
 poised
@@ -962,6 +956,7 @@ polydactyl
 polyester
 pond
 pool
+popular
 positive
 possible
 potent
@@ -986,7 +981,6 @@ proud
 proximal
 psychedelic
 puddle
-puffy
 pumped
 purple
 purrfect
@@ -1023,6 +1017,7 @@ raspy
 rattle
 real
 rebel
+recent
 receptive
 recondite
 rectangular
@@ -1065,15 +1060,13 @@ rocky
 rogue
 romantic
 roomy
-root
 rose
+rotated
+rotating
 rough
 round
 rounded
-rowan
 royal
-ruby
-ruddy
 rumbling
 rune
 rural
@@ -1119,12 +1112,12 @@ separate
 separated
 sepia
 sequoia
+serene
 serious
 shade
 shaded
 shadow
 shadowed
-shard
 shared
 sharp
 sheer
@@ -1151,9 +1144,11 @@ silken
 silky
 silly
 silver
+similar
 simple
 simplistic
 sincere
+single
 six
 sixth
 skillful
@@ -1165,6 +1160,7 @@ sleepy
 sleet
 slender
 slime
+slimy
 slow
 sly
 small
@@ -1244,6 +1240,7 @@ strong
 stump
 stupendous
 sturdy
+stylish
 suave
 subdued
 subsequent
@@ -1365,6 +1362,7 @@ universal
 unleashed
 unmarred
 unruly
+unusual
 upbeat
 useful
 utopian
@@ -1389,6 +1387,7 @@ vine
 vintage
 violet
 viridian
+visual
 vivacious
 vivid
 volcano
@@ -1405,7 +1404,6 @@ water
 watery
 wave
 wax
-weak
 wealthy
 well
 west
@@ -1419,7 +1417,6 @@ wide
 wiggly
 wild
 wind
-windy
 winter
 wirehaired
 wiry
@@ -1434,7 +1431,6 @@ wooden
 wool
 woolen
 woolly
-woozy
 workable
 working
 worried
@@ -1443,7 +1439,6 @@ yellow
 yielding
 young
 youthful
-yummy
 zany
 zealous
 zenith
