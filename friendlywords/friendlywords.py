@@ -7,7 +7,7 @@ from typing import List, Union
 
 class FriendlyWords(ModuleType):
 
-    __version__ = '1.0.5'
+    __version__ = '1.1.0'
     DATA_PATH = os.path.join(os.path.dirname(__file__), 'data')
     WORD_LISTS = {
         'p': {
@@ -86,10 +86,12 @@ class FriendlyWords(ModuleType):
 
         if not isinstance(command, int) and not isinstance(command, str):
             raise TypeError(f'Generate expects a positive integer or str, not {type(command)}')
+        if not isinstance(separator, str):
+            raise TypeError(f'Separator must be a string, not {type(separator)}')
 
         # define type of words to sample
         if isinstance(command, int):
-            if command < 0:
+            if command <= 0:
                 raise ValueError('Generate expects a positive integer or str')
 
             # N-1 predicates + 1 object
@@ -105,7 +107,7 @@ class FriendlyWords(ModuleType):
             if c not in self.WORD_LISTS:
                 raise ValueError('Generate expects chars p (predicate), o (object), t (teams) or c (collections).')
 
-            chosen_word = random.randrange(0, self.WORD_LISTS[c]['n'])
+            chosen_word = random.randint(0, self.WORD_LISTS[c]['n'] - 1)
 
             if self.WORD_LISTS[c]['list']:
                 words.append(self.WORD_LISTS[c]['list'][chosen_word])

@@ -1,0 +1,24 @@
+name: Build and upload package to PIP
+
+on: [push, pull_request]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        # 3.6 will reach EoL in December 2021
+        # https://devguide.python.org/#status-of-python-branches
+        python-version: [ "3.7", "3.8", "3.9", "3.10" ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - name: Run tests
+        run: |
+          python -m pytest tests
