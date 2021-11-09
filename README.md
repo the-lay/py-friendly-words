@@ -23,6 +23,8 @@ Features
 
 Quick guide
 -----------
+Install with PIP: `pip install friendlywords`
+
 ```python
 import friendlywords as fw
 
