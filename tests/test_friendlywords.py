@@ -1,4 +1,6 @@
 import unittest
+import random
+
 import friendlywords as fw
 
 
@@ -60,4 +62,14 @@ class TestFriendlyWords(unittest.TestCase):
         with self.assertRaises(ValueError):
             fw.generate('cccoooppptttz')
 
+    def test_reproducibility(self):
+        def _check(seed):
+            random.seed(seed)
+            a = fw.generate(10)
+            random.seed(seed)
+            b = fw.generate(10)
+            self.assertEqual(a, b)
 
+        _check(0)
+        _check(42)
+        _check(1337)
