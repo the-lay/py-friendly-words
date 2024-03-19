@@ -29,7 +29,7 @@ Install with PIP: `pip install friendlywords`
 ```python
 import friendlywords as fw
 
-# optional preloading, load all word lists into memory (~TODO measure MB)
+# optional preloading, load all word lists into memory (~41KB)
 # otherwise every generation would involve reading the files
 fw.preload()
 

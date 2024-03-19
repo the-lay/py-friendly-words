@@ -7,7 +7,7 @@ from typing import List, Union
 
 class FriendlyWords(ModuleType):
 
-    __version__ = '1.1.2'
+    __version__ = '1.1.3'
     DATA_PATH = os.path.join(os.path.dirname(__file__), 'data')
     WORD_LISTS = {
         'p': {
