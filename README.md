@@ -41,7 +41,7 @@ fw.generate(1)
 fw.generate(4)
 >>> 'southern florentine rain college'
 
-# generate string that consists of a random predicate and random object
+# generate string that follow a given grammar
 # p = predicate, o = object, t = team, c = collection
 fw.generate('po')
 >>> 'bittersweet curio'
