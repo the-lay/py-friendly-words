@@ -18,11 +18,17 @@ class FriendlyWords(ModuleType):
     @staticmethod
     def _load_word(txt_file: str, n: int = -1) -> Union[str, List[str]]:
         """
-        Loads N-th word from the text file
+        Load N-th word from the text file.
 
-        :param txt_file: str, path to the text file
-        :param n: int, word number to read and return, if negative, return the whole list
-        :return: word or list of words
+        Args:
+            txt_file: path to the text file
+            n: word number to read and return, if negative, return the whole list
+
+        Returns:
+            Single word or list of words
+
+        Raises:
+            RuntimeError: If the text file does not exist
         """
         if not os.path.exists(txt_file):
             raise RuntimeError(f"The text file ({txt_file}) does not exist.")
@@ -36,6 +42,7 @@ class FriendlyWords(ModuleType):
 
     @property
     def predicates(self) -> List[str]:
+        """Get list of all predicate words."""
         if not self.WORD_LISTS["p"]["list"]:
             self.WORD_LISTS["p"]["list"] = self._load_word(
                 self.WORD_LISTS["p"]["path"], -1
@@ -45,6 +52,7 @@ class FriendlyWords(ModuleType):
 
     @property
     def objects(self) -> List[str]:
+        """Get list of all predicate words."""
         if not self.WORD_LISTS["o"]["list"]:
             self.WORD_LISTS["o"]["list"] = self._load_word(
                 self.WORD_LISTS["o"]["path"], -1
@@ -54,6 +62,7 @@ class FriendlyWords(ModuleType):
 
     @property
     def teams(self) -> List[str]:
+        """Get list of all team words."""
         if not self.WORD_LISTS["t"]["list"]:
             self.WORD_LISTS["t"]["list"] = self._load_word(
                 self.WORD_LISTS["t"]["path"], -1
@@ -63,6 +72,7 @@ class FriendlyWords(ModuleType):
 
     @property
     def collections(self) -> List[str]:
+        """Get list of collection words."""
         if not self.WORD_LISTS["c"]["list"]:
             self.WORD_LISTS["c"]["list"] = self._load_word(
                 self.WORD_LISTS["c"]["path"], -1
@@ -71,6 +81,7 @@ class FriendlyWords(ModuleType):
         return self.WORD_LISTS["c"]["list"]
 
     def preload(self) -> None:
+        """Preload all word lists into memory."""
         for w in self.WORD_LISTS:
             self.WORD_LISTS[w]["list"] = self._load_word(self.WORD_LISTS[w]["path"], -1)
 
@@ -80,6 +91,31 @@ class FriendlyWords(ModuleType):
         separator: str = " ",
         as_list: bool = False,
     ) -> Union[str, List[str]]:
+        """
+        Generate friendly words based on the provided command.
+        The command can be an integer (number of words to generate) or a string pattern for specific word types.
+        If an integer is provided, it will generate that many words, with the last word being an object.
+        The string pattern can contain:
+        - 'p' for predicates
+        - 'o' for objects
+        - 't' for teams
+        - 'c' for collections
+        The generated words will be joined by the specified separator.
+        If `as_list` is True, a list of words will be returned instead of a string, ignoring the separator.
+
+        Args:
+            command: Integer (number of words) or string pattern
+            separator: String to join words with
+            as_list: Whether to return a list of words instead of a string
+
+        Returns:
+            String of words joined by separator or a list of words
+
+        Raises:
+            TypeError: If command is not int or str, or separator is not str
+            ValueError: If command is invalid
+        """
+
         if not isinstance(command, (int, str)):
             raise TypeError(
                 f"Generate expects a positive integer or str, not {type(command)}"
