@@ -1,26 +1,32 @@
-name: Tests
+name: Development
 
 on: [push, pull_request]
 
 jobs:
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+    - uses: pre-commit/action@v3.0.1
+
   test:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 5
       matrix:
         # 3.9 will reach EoL in October 2025
         # https://devguide.python.org/versions/
         python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - name: Run tests
-        run: |
+          cache: 'pip'
+      - run: |
           python -m pip install --upgrade pip
           pip install pytest
           python -m pytest tests
