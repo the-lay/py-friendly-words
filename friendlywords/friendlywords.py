@@ -16,7 +16,7 @@ class FriendlyWords(ModuleType):
     }
 
     @staticmethod
-    def _load_word(txt_file: str, n: int = -1):
+    def _load_word(txt_file: str, n: int = -1) -> Union[str, List[str]]:
         """
         Loads N-th word from the text file
 
@@ -70,7 +70,7 @@ class FriendlyWords(ModuleType):
 
         return self.WORD_LISTS["c"]["list"]
 
-    def preload(self):
+    def preload(self) -> None:
         for w in self.WORD_LISTS:
             self.WORD_LISTS[w]["list"] = self._load_word(self.WORD_LISTS[w]["path"], -1)
 
@@ -79,11 +79,12 @@ class FriendlyWords(ModuleType):
         command: Union[int, str],
         separator: str = " ",
         as_list: bool = False,
-    ):
-        if not isinstance(command, int) and not isinstance(command, str):
+    ) -> Union[str, List[str]]:
+        if not isinstance(command, (int, str)):
             raise TypeError(
                 f"Generate expects a positive integer or str, not {type(command)}"
             )
+
         if not isinstance(separator, str):
             raise TypeError(f"Separator must be a string, not {type(separator)}")
 

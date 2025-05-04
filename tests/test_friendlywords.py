@@ -9,7 +9,7 @@ class TestFriendlyWords(unittest.TestCase):
         fw.preload()
 
     def test_generate_separator(self):
-        def _check(n, sep):
+        def _check(n: int, sep: str) -> None:
             self.assertEqual(len(fw.generate(n, separator=sep).split(sep)), n)
 
         _check(2, " ")
@@ -31,7 +31,7 @@ class TestFriendlyWords(unittest.TestCase):
             self.assertEqual(len(fw.generate(n).split()), n)
 
     def test_generate_words(self):
-        def _check(command):
+        def _check(command: str) -> None:
             s = fw.generate(command).split()
             for c, w in zip(command, s):
                 self.assertIn(w, fw.WORD_LISTS[c.lower()]["list"])
@@ -61,7 +61,7 @@ class TestFriendlyWords(unittest.TestCase):
             fw.generate("cccoooppptttz")
 
     def test_reproducibility(self):
-        def _check(seed):
+        def _check(seed: int) -> None:
             random.seed(seed)
             a = fw.generate(10)
             random.seed(seed)
