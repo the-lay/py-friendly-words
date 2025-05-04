@@ -5,7 +5,6 @@ import friendlywords as fw
 
 
 class TestFriendlyWords(unittest.TestCase):
-
     def setUp(self) -> None:
         fw.preload()
 
@@ -13,13 +12,13 @@ class TestFriendlyWords(unittest.TestCase):
         def _check(n, sep):
             self.assertEqual(len(fw.generate(n, separator=sep).split(sep)), n)
 
-        _check(2, ' ')
-        _check(3, '-')
-        _check(4, '/')
-        _check(5, ', ')
+        _check(2, " ")
+        _check(3, "-")
+        _check(4, "/")
+        _check(5, ", ")
 
         # empty separator should produce one big str
-        self.assertEqual(len(fw.generate(5, separator='').split()), 1)
+        self.assertEqual(len(fw.generate(5, separator="").split()), 1)
 
     def test_generate_as_list(self):
         for n in range(1, 10):
@@ -32,23 +31,22 @@ class TestFriendlyWords(unittest.TestCase):
             self.assertEqual(len(fw.generate(n).split()), n)
 
     def test_generate_words(self):
-
         def _check(command):
             s = fw.generate(command).split()
             for c, w in zip(command, s):
-                self.assertIn(w, fw.WORD_LISTS[c.lower()]['list'])
+                self.assertIn(w, fw.WORD_LISTS[c.lower()]["list"])
             self.assertEqual(len(s), len(command))
 
-        _check('c')
-        _check('o')
-        _check('p')
-        _check('t')
-        _check('copt')
-        _check('C')
-        _check('O')
-        _check('P')
-        _check('T')
-        _check('COPT')
+        _check("c")
+        _check("o")
+        _check("p")
+        _check("t")
+        _check("copt")
+        _check("C")
+        _check("O")
+        _check("P")
+        _check("T")
+        _check("COPT")
 
     def test_inputs(self):
         with self.assertRaises(ValueError):
@@ -58,9 +56,9 @@ class TestFriendlyWords(unittest.TestCase):
         with self.assertRaises(TypeError):
             fw.generate(10, separator=1)
         with self.assertRaises(ValueError):
-            fw.generate('a')
+            fw.generate("a")
         with self.assertRaises(ValueError):
-            fw.generate('cccoooppptttz')
+            fw.generate("cccoooppptttz")
 
     def test_reproducibility(self):
         def _check(seed):
