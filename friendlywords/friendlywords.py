@@ -17,7 +17,7 @@ class FriendlyWords(ModuleType):
         },
         'o': {
             'path': os.path.join(DATA_PATH, 'objects.txt'),
-            'n': 3064,
+            'n': 3062,
             'list': []
         },
         't': {
