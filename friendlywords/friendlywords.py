@@ -28,7 +28,8 @@ class FriendlyWords(ModuleType):
             raise RuntimeError(f"The text file ({txt_file}) does not exist.")
 
         if n < 0:
-            return [w.rstrip() for w in open(txt_file, mode="r")]
+            with open(txt_file, "r") as f:
+                return [w.rstrip() for w in f]
 
         with open(txt_file, mode="r") as f:
             return next(it.islice(f, n, n + 1), None).rstrip()
