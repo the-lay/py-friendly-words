@@ -1,6 +1,6 @@
+import itertools as it
 import os
 import random
-import itertools as it
 from types import ModuleType
 from typing import List, Union
 
@@ -17,8 +17,7 @@ class FriendlyWords(ModuleType):
 
     @staticmethod
     def _load_word(txt_file: str, n: int = -1) -> Union[str, List[str]]:
-        """
-        Load N-th word from the text file.
+        """Load N-th word from the text file.
 
         Args:
             txt_file: path to the text file
@@ -29,24 +28,23 @@ class FriendlyWords(ModuleType):
 
         Raises:
             RuntimeError: If the text file does not exist
+
         """
         if not os.path.exists(txt_file):
             raise RuntimeError(f"The text file ({txt_file}) does not exist.")
 
         if n < 0:
-            with open(txt_file, "r") as f:
+            with open(txt_file) as f:
                 return [w.rstrip() for w in f]
 
-        with open(txt_file, mode="r") as f:
+        with open(txt_file) as f:
             return next(it.islice(f, n, n + 1), None).rstrip()
 
     @property
     def predicates(self) -> List[str]:
         """Get list of all predicate words."""
         if not self.WORD_LISTS["p"]["list"]:
-            self.WORD_LISTS["p"]["list"] = self._load_word(
-                self.WORD_LISTS["p"]["path"], -1
-            )
+            self.WORD_LISTS["p"]["list"] = self._load_word(self.WORD_LISTS["p"]["path"], -1)
 
         return self.WORD_LISTS["p"]["list"]
 
@@ -54,9 +52,7 @@ class FriendlyWords(ModuleType):
     def objects(self) -> List[str]:
         """Get list of all predicate words."""
         if not self.WORD_LISTS["o"]["list"]:
-            self.WORD_LISTS["o"]["list"] = self._load_word(
-                self.WORD_LISTS["o"]["path"], -1
-            )
+            self.WORD_LISTS["o"]["list"] = self._load_word(self.WORD_LISTS["o"]["path"], -1)
 
         return self.WORD_LISTS["o"]["list"]
 
@@ -64,9 +60,7 @@ class FriendlyWords(ModuleType):
     def teams(self) -> List[str]:
         """Get list of all team words."""
         if not self.WORD_LISTS["t"]["list"]:
-            self.WORD_LISTS["t"]["list"] = self._load_word(
-                self.WORD_LISTS["t"]["path"], -1
-            )
+            self.WORD_LISTS["t"]["list"] = self._load_word(self.WORD_LISTS["t"]["path"], -1)
 
         return self.WORD_LISTS["t"]["list"]
 
@@ -74,9 +68,7 @@ class FriendlyWords(ModuleType):
     def collections(self) -> List[str]:
         """Get list of collection words."""
         if not self.WORD_LISTS["c"]["list"]:
-            self.WORD_LISTS["c"]["list"] = self._load_word(
-                self.WORD_LISTS["c"]["path"], -1
-            )
+            self.WORD_LISTS["c"]["list"] = self._load_word(self.WORD_LISTS["c"]["path"], -1)
 
         return self.WORD_LISTS["c"]["list"]
 
@@ -91,8 +83,7 @@ class FriendlyWords(ModuleType):
         separator: str = " ",
         as_list: bool = False,
     ) -> Union[str, List[str]]:
-        """
-        Generate friendly words based on the provided command.
+        """Generate friendly words based on the provided command.
         The command can be an integer (number of words to generate) or a string pattern for specific word types.
         If an integer is provided, it will generate that many words, with the last word being an object.
         The string pattern can contain:
@@ -114,12 +105,10 @@ class FriendlyWords(ModuleType):
         Raises:
             TypeError: If command is not int or str, or separator is not str
             ValueError: If command is invalid
-        """
 
+        """
         if not isinstance(command, (int, str)):
-            raise TypeError(
-                f"Generate expects a positive integer or str, not {type(command)}"
-            )
+            raise TypeError(f"Generate expects a positive integer or str, not {type(command)}")
 
         if not isinstance(separator, str):
             raise TypeError(f"Separator must be a string, not {type(separator)}")
@@ -130,9 +119,7 @@ class FriendlyWords(ModuleType):
                 raise ValueError("Generate expects a positive integer or str")
 
             # N-1 predicates + 1 object
-            _command = "o"
-            for i in range(command - 1):
-                _command = "p" + _command
+            _command = "p" * (command - 1) + "o"
         else:
             _command = command.lower()
 
@@ -140,9 +127,7 @@ class FriendlyWords(ModuleType):
         words = []
         for c in _command:
             if c not in self.WORD_LISTS:
-                raise ValueError(
-                    "Generate expects chars p (predicate), o (object), t (teams) or c (collections)."
-                )
+                raise ValueError("Generate expects chars p (predicate), o (object), t (teams) or c (collections).")
 
             chosen_word = random.randint(0, self.WORD_LISTS[c]["n"] - 1)
 
@@ -154,5 +139,4 @@ class FriendlyWords(ModuleType):
         # return as list if needed, otherwise join with separator and return
         if as_list:
             return words
-        else:
-            return separator.join(words)
+        return separator.join(words)

@@ -1,4 +1,5 @@
 import sys
+
 from .friendlywords import FriendlyWords
 
 __version__ = FriendlyWords.__version__
