@@ -29,9 +29,8 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 include-package-data = true
-platform = "any"
 
-[tool.setuptools.package_data]
+[tool.setuptools.package-data]
 friendlywords = ["data/*", "py.typed"]
 
 [tool.ruff]
