@@ -1,0 +1,47 @@
+[project]
+name = "friendlywords"
+dynamic = ["version"]
+description = "Python package to generate random human-readable strings, e.g. project and experiment names"
+authors = [
+    {name = "the-lay", email = "ilja.gubin@gmail.com"},
+]
+dependencies = []
+requires-python = ">= 3.6"
+readme = "README.md"
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Source = "https://github.com/the-lay/py-friendly-words"
+Issues = "https://github.com/the-lay/py-friendly-words/issues"
+
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.setuptools]
+include-package-data = true
+platform = "any"
+
+[tool.setuptools.package_data]
+friendlywords = ["data/*", "py.typed"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "I", "F", "W", "B", "A"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
