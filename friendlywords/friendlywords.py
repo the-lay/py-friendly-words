@@ -1,86 +1,86 @@
-import itertools as it
 import os
 import random
+import warnings
 from types import ModuleType
-from typing import List, Union
+from typing import Dict, List, Optional, TypedDict, Union
+
+
+class _WordList(TypedDict):
+    path: str
+    n: int
+    list: List[str]
+
+
+def _load_words(txt_file: str) -> List[str]:
+    """Load all words from the text file.
+
+    Args:
+        txt_file: path to the text file
+
+    Returns:
+        List of words
+
+    Raises:
+        RuntimeError: If the text file does not exist
+
+    """
+    if not os.path.exists(txt_file):
+        raise RuntimeError(f"The text file ({txt_file}) does not exist.")
+
+    with open(txt_file) as f:
+        return [w.rstrip() for w in f]
+
+
+def _word_list(path: str) -> _WordList:
+    words = _load_words(path)
+    return {"path": path, "n": len(words), "list": words}
 
 
 class FriendlyWords(ModuleType):
+    __version__: str
+
     DATA_PATH = os.path.join(os.path.dirname(__file__), "data")
-    WORD_LISTS = {
-        "p": {"path": os.path.join(DATA_PATH, "predicates.txt"), "n": 1450, "list": []},
-        "o": {"path": os.path.join(DATA_PATH, "objects.txt"), "n": 3062, "list": []},
-        "t": {"path": os.path.join(DATA_PATH, "teams.txt"), "n": 130, "list": []},
-        "c": {"path": os.path.join(DATA_PATH, "collections.txt"), "n": 70, "list": []},
+    WORD_LISTS: Dict[str, _WordList] = {
+        "p": _word_list(os.path.join(DATA_PATH, "predicates.txt")),
+        "o": _word_list(os.path.join(DATA_PATH, "objects.txt")),
+        "t": _word_list(os.path.join(DATA_PATH, "teams.txt")),
+        "c": _word_list(os.path.join(DATA_PATH, "collections.txt")),
     }
-
-    @staticmethod
-    def _load_word(txt_file: str, n: int = -1) -> Union[str, List[str]]:
-        """Load N-th word from the text file.
-
-        Args:
-            txt_file: path to the text file
-            n: word number to read and return, if negative, return the whole list
-
-        Returns:
-            Single word or list of words
-
-        Raises:
-            RuntimeError: If the text file does not exist
-
-        """
-        if not os.path.exists(txt_file):
-            raise RuntimeError(f"The text file ({txt_file}) does not exist.")
-
-        if n < 0:
-            with open(txt_file) as f:
-                return [w.rstrip() for w in f]
-
-        with open(txt_file) as f:
-            return next(it.islice(f, n, n + 1), None).rstrip()
 
     @property
     def predicates(self) -> List[str]:
         """Get list of all predicate words."""
-        if not self.WORD_LISTS["p"]["list"]:
-            self.WORD_LISTS["p"]["list"] = self._load_word(self.WORD_LISTS["p"]["path"], -1)
-
         return self.WORD_LISTS["p"]["list"]
 
     @property
     def objects(self) -> List[str]:
-        """Get list of all predicate words."""
-        if not self.WORD_LISTS["o"]["list"]:
-            self.WORD_LISTS["o"]["list"] = self._load_word(self.WORD_LISTS["o"]["path"], -1)
-
+        """Get list of all object words."""
         return self.WORD_LISTS["o"]["list"]
 
     @property
     def teams(self) -> List[str]:
         """Get list of all team words."""
-        if not self.WORD_LISTS["t"]["list"]:
-            self.WORD_LISTS["t"]["list"] = self._load_word(self.WORD_LISTS["t"]["path"], -1)
-
         return self.WORD_LISTS["t"]["list"]
 
     @property
     def collections(self) -> List[str]:
         """Get list of collection words."""
-        if not self.WORD_LISTS["c"]["list"]:
-            self.WORD_LISTS["c"]["list"] = self._load_word(self.WORD_LISTS["c"]["path"], -1)
-
         return self.WORD_LISTS["c"]["list"]
 
     def preload(self) -> None:
-        """Preload all word lists into memory."""
-        for w in self.WORD_LISTS:
-            self.WORD_LISTS[w]["list"] = self._load_word(self.WORD_LISTS[w]["path"], -1)
+        """Deprecated: word lists are always loaded at import, this method is a no-op."""
+        warnings.warn(
+            "preload() is deprecated and no longer needed: word lists are always loaded at import.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
     def generate(
         self,
         command: Union[int, str],
         separator: str = " ",
         as_list: bool = False,
+        rng: Optional[random.Random] = None,
     ) -> Union[str, List[str]]:
         """Generate friendly words based on the provided command.
         The command can be an integer (number of words to generate) or a string pattern for specific word types.
@@ -92,11 +92,14 @@ class FriendlyWords(ModuleType):
         - 'c' for collections
         The generated words will be joined by the specified separator.
         If `as_list` is True, a list of words will be returned instead of a string, ignoring the separator.
+        If `rng` is provided, it is used as the source of randomness instead of the global `random` state,
+        making generation reproducible without touching the global seed.
 
         Args:
             command: Integer (number of words) or string pattern
             separator: String to join words with
             as_list: Whether to return a list of words instead of a string
+            rng: Optional `random.Random` instance to use as the source of randomness
 
         Returns:
             String of words joined by separator or a list of words
@@ -120,20 +123,21 @@ class FriendlyWords(ModuleType):
             # N-1 predicates + 1 object
             _command = "p" * (command - 1) + "o"
         else:
+            if not command:
+                raise ValueError("Generate expects a non-empty str")
+
             _command = command.lower()
 
+        randint = rng.randint if rng is not None else random.randint
+
         # sample the words according to _command
-        words = []
+        words: List[str] = []
         for c in _command:
             if c not in self.WORD_LISTS:
                 raise ValueError("Generate expects chars p (predicate), o (object), t (teams) or c (collections).")
 
-            chosen_word = random.randint(0, self.WORD_LISTS[c]["n"] - 1)
-
-            if self.WORD_LISTS[c]["list"]:
-                words.append(self.WORD_LISTS[c]["list"][chosen_word])
-            else:
-                words.append(self._load_word(self.WORD_LISTS[c]["path"], chosen_word))
+            word_list = self.WORD_LISTS[c]["list"]
+            words.append(word_list[randint(0, len(word_list) - 1)])
 
         # return as list if needed, otherwise join with separator and return
         if as_list:
