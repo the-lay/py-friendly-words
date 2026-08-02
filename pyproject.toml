@@ -6,15 +6,22 @@ authors = [
     {name = "the-lay", email = "ilja.gubin@gmail.com"},
 ]
 dependencies = []
-requires-python = ">= 3.6"
+requires-python = ">=3.9"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 
 [project.urls]
@@ -22,7 +29,7 @@ Source = "https://github.com/the-lay/py-friendly-words"
 Issues = "https://github.com/the-lay/py-friendly-words/issues"
 
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm>=8"]
+requires = ["setuptools>=77", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
@@ -31,7 +38,10 @@ build-backend = "setuptools.build_meta"
 include-package-data = true
 
 [tool.setuptools.package-data]
-friendlywords = ["data/*", "py.typed"]
+friendlywords = ["data/*", "py.typed", "__init__.pyi"]
+
+[tool.mypy]
+python_version = "3.9"
 
 [tool.ruff]
 target-version = "py39"
