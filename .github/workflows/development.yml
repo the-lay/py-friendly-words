@@ -7,10 +7,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
+    - uses: actions/checkout@v7
+    - uses: actions/setup-python@v7
       with:
-        python-version: 3.9
+        python-version: "3.13"
         architecture: x64
     - uses: pre-commit/action@v3.0.1
 
@@ -19,12 +19,11 @@ jobs:
     strategy:
       max-parallel: 5
       matrix:
-        # 3.9 will reach EoL in October 2025
         # https://devguide.python.org/versions/
-        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13", "3.14" ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
